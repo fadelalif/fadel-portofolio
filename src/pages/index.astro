@@ -1,102 +1,231 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../layouts/Header.astro";
+import RequirementCard from "../components/RequirementCard.astro";
+import SkillCarousel from "../components/SkillCarousel.astro";
+
+const requirementSkills = [
+  {
+    iconClass: "fa-solid fa-hands-holding",
+    title: "Managing Project",
+    levelText: "Intermediate",
+    levelNumber: 3,
+  },
+  {
+    iconClass: "fa-solid fa-gear",
+    title: "Requirements",
+    levelText: "Advanced",
+    levelNumber: 4,
+  },
+  {
+    iconClass: "fa-solid fa-palette",
+    title: "Design",
+    levelText: "Expert",
+    levelNumber: 5,
+  },
+  {
+    iconClass: "fa-solid fa-code",
+    title: "Construction",
+    levelText: "Advanced",
+    levelNumber: 4,
+  },
+  {
+    iconClass: "fa-solid fa-circle-check",
+    title: "Testing",
+    levelText: "Basic",
+    levelNumber: 2,
+  },
+  {
+    iconClass: "fa-solid fa-wrench",
+    title: "Maintenance",
+    levelText: "Basic",
+    levelNumber: 2,
+  },
+];
+
+const getLevelText = (level: number): string => {
+  if (level === 5) return "Expert";
+  if (level === 4) return "Advanced";
+  if (level === 3) return "Intermediate";
+  if (level === 2) return "Basic";
+  if (level === 1) return "";
+
+  return "Basic";
+};
+
+const softwareTools = [
+  {
+    imgSrc: "/assets/MSOffice.png",
+    altText: "Microsoft Office Icon",
+    name: "Microsoft Office",
+    level: 5,
+  },
+  {
+    imgSrc: "/assets/GitHub.png",
+    altText: "GitHub Icon",
+    name: "GitHub",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/Figma.png",
+    altText: "Figma Icon",
+    name: "Figma",
+    level: 5,
+  },
+  { imgSrc: "/assets/Jira.png", altText: "Jira Icon", name: "Jira", level: 4 },
+  {
+    imgSrc: "/assets/VSCode.png",
+    altText: "VSCode Icon",
+    name: "VS Code",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/SonarQube.png",
+    altText: "SonarQube Icon",
+    name: "SonarQube",
+    level: 2,
+  },
+  {
+    imgSrc: "/assets/Katalon.png",
+    altText: "Katalon Icon",
+    name: "Katalon",
+    level: 2,
+  },
+  { imgSrc: "/assets/Maze.png", altText: "Maze Icon", name: "Maze", level: 5 },
+  {
+    imgSrc: "/assets/Photoshop.png",
+    altText: "Photoshop Icon",
+    name: "Adobe Photoshop",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/Canva.png",
+    altText: "Canva Icon",
+    name: "Canva",
+    level: 5,
+  },
+].map((tool) => ({ ...tool, levelText: getLevelText(tool.level) }));
+
+const technologies = [
+  {
+    imgSrc: "/assets/Laravel.png",
+    altText: "Laravel Icon",
+    name: "Laravel",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/Node.png",
+    altText: "Node Icon",
+    name: "Node JS",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/CI3.png",
+    altText: "CI3 Icon",
+    name: "CodeIgniter 3",
+    level: 3,
+  },
+  {
+    imgSrc: "/assets/Flutter.png",
+    altText: "Flutter Icon",
+    name: "Flutter",
+    level: 3,
+  },
+  {
+    imgSrc: "/assets/React.png",
+    altText: "React Icon",
+    name: "React JS",
+    level: 3,
+  },
+  {
+    imgSrc: "/assets/Astro.png",
+    altText: "Astro Icon",
+    name: "Astro",
+    level: 3,
+  },
+  {
+    imgSrc: "/assets/Tailwind.png",
+    altText: "Tailwind Icon",
+    name: "Tailwind CSS",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/Bootstrap.png",
+    altText: "Bootstrap Icon",
+    name: "Bootstrap",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/MySQL.png",
+    altText: "MySQL Icon",
+    name: "MySQL",
+    level: 3,
+  },
+  {
+    imgSrc: "/assets/Firebase.png",
+    altText: "Firebase Icon",
+    name: "Firebase",
+    level: 3,
+  },
+  { imgSrc: "/assets/HTML.png", altText: "HTML Icon", name: "HTML", level: 4 },
+  { imgSrc: "/assets/CSS.png", altText: "CSS Icon", name: "CSS", level: 4 },
+  {
+    imgSrc: "/assets/Javascript.png",
+    altText: "Javascript Icon",
+    name: "Javascript",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/Python.png",
+    altText: "Python Icon",
+    name: "Python",
+    level: 3,
+  },
+  {
+    imgSrc: "/assets/Scrum.png",
+    altText: "Scrum Icon",
+    name: "Scrum Framework",
+    level: 5,
+  },
+  {
+    imgSrc: "/assets/Lean.png",
+    altText: "Lean Icon",
+    name: "Lean Startup",
+    level: 4,
+  },
+  {
+    imgSrc: "/assets/DS.png",
+    altText: "DS Icon",
+    name: "Design Thinking",
+    level: 5,
+  },
+  {
+    imgSrc: "/assets/UCD.png",
+    altText: "UCD Icon",
+    name: "User Centered Design",
+    level: 5,
+  },
+].map((tech) => ({ ...tech, levelText: getLevelText(tech.level) })); // Tambahkan levelText ke data
 ---
 
-<Layout title="Fadel Alif - Software Engineer Portfolio">
-  <header
-    class="relative h-screen w-full bg-cover bg-center"
-    style="background-image: url('/assets/Hero FDL.png');"
-  >
-    <div class="absolute inset-0 bg-black opacity-40"></div>
-    <div class="relative z-10 flex h-full flex-col">
-      <nav
-        class="container mx-auto flex items-center justify-between px-4 py-6 sm:px-8 md:px-20"
-      >
-        <a href="#">
-          <img src="/assets/FDL.png" class="h-12" alt="Logo" />
-        </a>
-        <div class="hidden items-center space-x-6 md:flex text-white">
-          <a
-            href="#about"
-            class="text-lg font-bold hover:text-[#ff4309] transition-colors"
-            >About Me</a
-          >
-          <a
-            href="#experiences"
-            class="text-lg font-bold hover:text-[#ff4309] transition-colors"
-            >Experiences</a
-          >
-          <a
-            href="#projects"
-            class="text-lg font-bold hover:text-[#ff4309] transition-colors"
-            >Projects</a
-          >
-          <a
-            href="#contact"
-            class="text-lg font-bold hover:text-[#ff4309] transition-colors"
-            >Contact</a
-          >
-        </div>
-        <div class="md:hidden">
-          <button class="text-white focus:outline-none">
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      <div
-        class="flex-grow container mx-auto px-4 sm:px-8 md:px-20 relative text-white"
-      >
-        <div class="absolute bottom-[60%]" data-aos="fade-right">
-          <h1 id="hero-title" class="text-4xl md:text-6xl font-bold"></h1>
-        </div>
-        <div
-          class="absolute bottom-[15%] right-0 md:right-20 text-right"
-          data-aos="fade-left"
-        >
-          <p class="text-2xl md:text-4xl font-bold">
-            <span id="hero-subtitle"></span>
-          </p>
-          <a
-            href="/assets/CV ATS_Fadel Alif Sadena Fresh Graduate.pdf"
-            download="CV Fadel Alif.pdf"
-            class="mt-4 inline-block rounded-md bg-gradient-to-r from-[#FF4E09] to-[#FF804E] px-8 py-3 font-semibold text-white shadow-lg transition-transform transform hover:scale-105 duration-300"
-          >
-            Download CV
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
+<Layout title="Fadel Alif Sadena Website">
+  <Header />
   <main>
     <div class="px-4 sm:px-8 md:px-20">
-      <section id="about" class="container mx-auto py-32 md:py-40">
-        <h2 class="text-[#ff4309] font-bold text-4xl leading-tight">
-          About Me
-        </h2>
+      <section id="about" class="container mx-auto py-32">
         <div
-          class="mt-12 grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-center"
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-center"
         >
           <div class="md:col-span-5" data-aos="fade-right">
             <img
               src="/assets/Fadel Foto.png"
               alt="Foto Fadel"
               class="w-full max-w-sm mx-auto md:max-w-full rounded-2xl shadow-lg border-2 border-[#ff4309]"
+              loading="lazy"
             />
           </div>
           <div class="md:col-span-7" data-aos="fade-left">
-            <p class="mt-6 leading-relaxed text-lg">
+            <p class="mt-6 leading-relaxed text-lg text-gray-300">
               Graduated from Software Engineering student at Telkom University,
               driven by a passion for building intuitive digital experiences. My
               journey began with a fascination for how great design and clean
@@ -119,7 +248,6 @@ import Layout from "../layouts/Layout.astro";
                   Telkom University
                 </p>
               </div>
-
               <div
                 class="bg-[#141414] rounded-lg p-4 flex flex-col items-center justify-center"
                 data-aos="fade-up"
@@ -130,7 +258,6 @@ import Layout from "../layouts/Layout.astro";
                   Software Engineering
                 </p>
               </div>
-
               <div
                 class="bg-[#141414] rounded-lg p-4 flex flex-col items-center justify-center"
                 data-aos="fade-up"
@@ -143,7 +270,6 @@ import Layout from "../layouts/Layout.astro";
                 class="bg-[#141414] rounded-lg p-4 flex flex-col items-center justify-center"
                 data-aos="fade-up"
                 data-aos-delay="250"
-                {/* Adjusted delay for staggered animation */}
               >
                 <p class="text-sm text-slate-400">Graduation</p>
                 <p class="text-lg font-semibold text-white mt-1">
@@ -154,1026 +280,62 @@ import Layout from "../layouts/Layout.astro";
           </div>
         </div>
       </section>
+      <section id="engineerskill" class="container mx-auto py-24">
+        <h2
+          class="text-[#ff4309] text-center font-bold text-4xl leading-tight"
+          data-aos="fade-up"
+        >
+          Software Engineering Skills
+        </h2>
+        <p
+          class="mt-2 leading-relaxed text-lg text-center text-gray-300"
+          data-aos="fade-up"
+        >
+          My core competencies in software development lifecycle.
+        </p>
+        <div
+          class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+          data-aos="fade-up"
+        >
+          {
+            requirementSkills.map((skill) => (
+              <RequirementCard
+                iconClass={skill.iconClass}
+                title={skill.title}
+                levelText={skill.levelText}
+                levelNumber={skill.levelNumber}
+              />
+            ))
+          }
+        </div>
+      </section>
 
       <section id="expertises" class="container mx-auto py-24">
         <h2
-          class="text-[#ff4309] font-bold text-4xl leading-tight"
+          class="text-[#ff4309] text-center font-bold text-4xl leading-tight"
           data-aos="fade-up"
         >
-          Expertises
-        </h2>
-        <div class="mt-12">
-          <h3
-            class="text-white font-bold text-2xl leading-tight"
-            data-aos="fade-right"
-          >
-            Software Tools
-          </h3>
-          <div
-            class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-          >
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right "
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/MSOffice.png" alt="Microsoft Office Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Microsoft Office
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/GitHub.png" alt="GitHub Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                GitHub
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Figma.png" alt="Figma Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Figma
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Jira.png" alt="Jira Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Jira
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/VSCode.png" alt="VSCode Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                VS Code
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/SonarQube.png" alt="SonarQube Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                SonarQube
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Katalon.png" alt="Katalon Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Katalon
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Maze.png" alt="Maze Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Maze
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Photoshop.png" alt="Photoshop Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Adobe Photoshop
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Canva.png" alt="Canva Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Canva
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="mt-12">
-          <h3
-            class="text-white font-bold text-2xl leading-tight"
-            data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-          >
-            Programming Skills
-          </h3>
-          <div
-            class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-          >
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Node.png" alt="Node Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Node JS
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Laravel.png" alt="Laravel Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Laravel
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/CI3.png" alt="CI3 Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                CodeIgniter 3
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Flutter.png" alt="Flutter Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Flutter
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/React.png" alt="React Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                React JS
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Astro.png" alt="Astro Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Astro
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Tailwind.png" alt="Tailwind Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Tailwind CSS
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Bootstrap.png" alt="Bootstrap Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Bootstrap
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/MySQL.png" alt="MySQL Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                MySQL
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Firebase.png" alt="Firebase Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Firebase
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/HTML.png" alt="HTML Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                HTML
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/CSS.png" alt="CSS Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                CSS
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Javascript.png" alt="Javascript Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Javascript
-              </h3>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <img src="/assets/Python.png" alt="Python Icon" />
-              </div>
-              <h3 class="mt-4 text-center text-xl font-regular text-white">
-                Python
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-12">
-          <h3
-            class="text-white font-bold text-2xl leading-tight"
-            data-aos="fade-right"
-          >
-            Other Skills
-          </h3>
-          <div
-            class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6"
-          >
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <h3
-                  class="py-4 text-center text-xl font-semibold text-[#ff4309]"
-                >
-                  Agile Framework
-                </h3>
-              </div>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <h3
-                  class="py-4 text-center text-xl font-semibold text-[#ff4309]"
-                >
-                  Scrum Framework
-                </h3>
-              </div>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <h3
-                  class="py-4 text-center text-xl font-semibold text-[#ff4309]"
-                >
-                  Design Thinking
-                </h3>
-              </div>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <h3
-                  class="py-4 text-center text-xl font-semibold text-[#ff4309]"
-                >
-                  User Centered Design
-                </h3>
-              </div>
-            </div>
-            <div
-              class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-            >
-              <div
-                class="bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                <h3
-                  class="py-4 text-center text-xl font-semibold text-[#ff4309]"
-                >
-                  Lean Startup
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="experiences" class="container mx-auto py-24">
-        <h2
-          class="text-[#ff4309] font-bold text-4xl leading-tight mb-12"
-          data-aos="fade-up"
-        >
-          Experiences
-        </h2>
-        <div class="grid grid-cols-1 gap-12">
-          <div
-            class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-          >
-            <div
-              class="bg-[#141414] rounded-xl shadow-lg p-6 lg:p-8 flex flex-col lg:flex-row items-center lg:items-start gap-8 transition-transform transform hover:-translate-y-2"
-              data-aos="fade-up"
-            >
-              <div class="flex-shrink-0">
-                <div
-                  class="w-48 h-48 rounded-full bg-white flex items-center justify-center"
-                >
-                  <img
-                    src="/assets/GizaLab.png"
-                    alt="Giza Lab Logo"
-                    class="max-w-full max-h-full"
-                  />
-                </div>
-              </div>
-              <div
-                class="flex-shrink-0 w-full lg:w-64 text-center lg:text-left"
-              >
-                <h2 class="text-[#ff4309] font-bold text-2xl">
-                  UI/UX Designer
-                </h2>
-                <p class="text-xl font-medium mt-1">Giza Lab</p>
-                <div class="mt-4 space-y-2 text-lg">
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-id-badge w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>Internship</p>
-                  </div>
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i class="fa-solid fa-house w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>Remote</p>
-                  </div>
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-calendar-days w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>February - June 2024</p>
-                  </div>
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-location-dot w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>Bandung, Indonesia</p>
-                  </div>
-                </div>
-              </div>
-              <div class="flex-grow text-[16px]">
-                <p class="leading-relaxed mb-4">
-                  As an internship participant at Giza Lab, I gained a lot of
-                  insight about UI Design and UX Research, both in theory and in
-                  practical case studies.
-                </p>
-                <ul class="list-disc list-inside space-y-2 leading-relaxed">
-                  <li>
-                    Actively participate in a UI/UX design mentoring programme
-                    under the guidance of professional mentors.
-                  </li>
-                  <li>Understanding UI/UX research and design fundamentals.</li>
-                  <li>
-                    Create a research project document for application product
-                    development.
-                  </li>
-                  <li>
-                    Conduct user research by applying tools, such as user
-                    persona, empathy map, and CJM.
-                  </li>
-                  <li>
-                    Performing ideation using a real case example by applying
-                    tools like brainwriting.
-                  </li>
-                  <li>
-                    Inspection on the user interface using the heuristic
-                    evaluation method and adjust it to the laws of UX.
-                  </li>
-                  <li>
-                    Setting up a design system, also creating local and global
-                    components that will be used in the process of designing the
-                    user interface.
-                  </li>
-                  <li>
-                    Create a user interface design (high-fidelity) and at the
-                    same time manage the prototyping (prototype) using Figma.
-                  </li>
-                  <li>Performing usability testing in moderate to users.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div
-            class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4"
-          >
-            <div
-              class="bg-[#141414] rounded-xl shadow-lg p-6 lg:p-8 flex flex-col lg:flex-row items-center lg:items-start gap-8 transition-transform transform hover:-translate-y-2"
-              data-aos="fade-up"
-            >
-              <div class="flex-shrink-0">
-                <div
-                  class="w-48 h-48 rounded-full bg-white flex items-center justify-center"
-                >
-                  <img
-                    src="/assets/Telkom.png"
-                    alt="Telkom Indonesia Logo"
-                    class="max-w-full max-h-full"
-                  />
-                </div>
-              </div>
-              <div
-                class="flex-shrink-0 w-full lg:w-64 text-center lg:text-left"
-              >
-                <h2 class="text-[#ff4309] font-bold text-2xl">
-                  IT Tools Support
-                </h2>
-                <p class="text-xl font-medium mt-1">PT Telkom Indonesia</p>
-                <div class="mt-4 space-y-2 text-lg">
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-id-badge w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>Internship</p>
-                  </div>
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-building w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>Onsite</p>
-                  </div>
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-calendar-days w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>July - August 2024</p>
-                  </div>
-                  <div
-                    class="flex items-center justify-center lg:justify-start gap-2"
-                  >
-                    <i
-                      class="fa-solid fa-location-dot w-5 text-center text-[#ff4309]"
-                    ></i>
-                    <p>Jakarta, Indonesia</p>
-                  </div>
-                </div>
-              </div>
-              <div class="flex-grow text-[16px]">
-                <p class="leading-relaxed mb-4">
-                  Internship at Enterprise & Business Service Directorate. As IT
-                  tools support, assisting in enhancing an application called
-                  PRIME used by the ISPO Unit.
-                </p>
-                <ul class="list-disc list-inside space-y-2 leading-relaxed">
-                  <li>Part of the IT Tools Support team.</li>
-                  <li>
-                    Gaining knowledge about end-to-end business processes in the
-                    SDA division.
-                  </li>
-                  <li>
-                    Redesign the system architecture diagram of the PRIME
-                    application.
-                  </li>
-                  <li>
-                    Creating UI design for the new features on the PRIME
-                    application.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="container mx-auto py-24">
-        <h2
-          class="text-[#ff4309] font-bold text-4xl leading-tight mb-12"
-          data-aos="fade-up"
-        >
-          Projects
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl overflow-hidden group"
-            data-aos="fade-up"
-          >
-            <img
-              src="/assets/Empowr.png"
-              alt="Empowr Application Thumbnail"
-              class="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-2">
-                Empowr Application
-              </h3>
-              <p class="text-gray-300 text-base mb-6">
-                Empowr web application is an outsourcing transaction system
-                designed to address the main problem of task crowding.
-              </p>
-              <div class="flex justify-end">
-                <a
-                  href="#"
-                  class="text-[#ff4309] font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity group"
-                >
-                  See Detail
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <img
-              src="/assets/Relawanin.png"
-              alt="Relawanin Application Thumbnail"
-              class="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-2">
-                Relawanin Application
-              </h3>
-              <p class="text-gray-300 text-base mb-6">
-                Relawanin is a application platform that aims to help volunteers
-                join activities that are primarily in the environmental field.
-              </p>
-              <div class="flex justify-end">
-                <a
-                  href="#"
-                  class="text-[#ff4309] font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity group"
-                >
-                  See Detail
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <img
-              src="/assets/Hikeers.png"
-              alt="Hikeers UI Design Thumbnail"
-              class="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-2">
-                Hikeers UI Design
-              </h3>
-              <p class="text-gray-300 text-base mb-6">
-                Hikeers is an application for mountain climbers in Indonesia to
-                make it easier for them to get information about mountains.
-              </p>
-              <div class="flex justify-end">
-                <a
-                  href="#"
-                  class="text-[#ff4309] font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity group"
-                >
-                  See Detail
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <img
-              src="/assets/JabarUlin.png"
-              alt="JabarUlin UI/UX Design Thumbnail"
-              class="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-2">
-                JabarUlin UI/UX Design
-              </h3>
-              <p class="text-gray-300 text-base mb-6">
-                JabarUlin is a mobile application that provides information on
-                various tourist destinations in West Java.
-              </p>
-              <div class="flex justify-end">
-                <a
-                  href="#"
-                  class="text-[#ff4309] font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity group"
-                >
-                  See Detail
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="certificates" class="container mx-auto py-24">
-        <h2
-          class="text-[#ff4309] font-bold text-4xl leading-tight mb-12"
-          data-aos="fade-up"
-        >
-          Certificates
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg overflow-hidden transition-all transform hover:!-translate-y-4 hover:shadow-xl"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div>
-              <img
-                src="/assets/C1.png"
-                alt="Certificate Figma for UI/UX Design"
-                class="w-full aspect-video object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-white font-bold text-lg mb-2">
-                Certificate of Skill Specialization: FIGMA FOR UI/UX DESIGN
-              </h3>
-              <p class="text-gray-400 text-sm">
-                Credential ID: MS-2/6/2024-qj78D96VjczXuTH895
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg overflow-hidden transition-all transform hover:!-translate-y-4 hover:shadow-xl"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div>
-              <img
-                src="/assets/C2.png"
-                alt="Certificate Git and Github"
-                class="w-full aspect-video object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-white font-bold text-lg mb-2">
-                Certificate of Skill Specialization: GIT AND GITHUB
-              </h3>
-              <p class="text-gray-400 text-sm">
-                Credential ID: MS-4/6/2024-DInoYogd02jX4JowO4I
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg overflow-hidden transition-all transform hover:!-translate-y-4 hover:shadow-xl"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <div>
-              <img
-                src="/assets/C3.png"
-                alt="Certificate Google SRE Culture"
-                class="w-full aspect-video object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-white font-bold text-lg mb-2">
-                Developing a Google SRE Culture
-              </h3>
-              <p class="text-gray-400 text-sm">
-                Credential ID: MS-2/6/2024-qj78D96VjczXuTH895
-              </p>
-            </div>
-          </div>
-          <div
-            class="bg-[#141414] rounded-xl shadow-lg overflow-hidden transition-all transform hover:!-translate-y-4 hover:shadow-xl"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div>
-              <img
-                src="/assets/C4.png"
-                alt="Certificate Flutter Development"
-                class="w-full aspect-video object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-white font-bold text-lg mb-2">
-                Flutter Development
-              </h3>
-              <p class="text-gray-400 text-sm">
-                Credential ID: MS-2/6/2024-qj78D96VjczXuTH895
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <section
-      id="contact"
-      class="mt-12 bg-gradient-to-r from-[#FF4E09] to-[#FF804E]"
-    >
-      <div class="container mx-auto px-4 py-20 text-center">
-        <h2 class="text-white font-bold text-4xl mb-2" data-aos="fade-up">
-          Connect With Me!
+          Technology Stack
         </h2>
         <p
-          class="text-white text-lg mx-auto mb-8"
+          class="mt-2 leading-relaxed text-lg text-center text-gray-300"
           data-aos="fade-up"
-          data-aos-delay="100"
         >
-          Contact me to collaborate on a project, or feel free to text me just
-          to get to know about me.
+          Tools and technology that I'm proficient in and used.
         </p>
-        <div
-          class="flex flex-wrap justify-center items-center gap-4"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <a
-            href="https://www.linkedin.com/in/fadelalif"
-            target="_blank"
-            class="bg-black text-white font-semibold rounded-lg px-5 py-3 flex items-center gap-3 transition-transform transform hover:scale-105"
-          >
-            <img
-              src="/assets/LinkedIn.png"
-              alt="LinkedIn Logo"
-              class="w-6 h-6"
-            />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href="https://github.com/fadelalif"
-            target="_blank"
-            class="bg-black text-white font-semibold rounded-lg px-5 py-3 flex items-center gap-3 transition-transform transform hover:scale-105"
-          >
-            <img src="/assets/GitHub 2.png" alt="GitHub Logo" class="w-6 h-6" />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="mailto:fadelkarut@gmail.com"
-            class="bg-black text-white font-semibold rounded-lg px-5 py-3 flex items-center gap-3 transition-transform transform hover:scale-105"
-          >
-            <img src="/assets/Email.png" alt="Email Icon" class="w-6 h-6" />
-            <span>Email</span>
-          </a>
-          <a
-            href="https://www.instagram.com/fadelalifs"
-            target="_blank"
-            class="bg-black text-white font-semibold rounded-lg px-5 py-3 flex items-center gap-3 transition-transform transform hover:scale-105"
-          >
-            <img src="/assets/IG.png" alt="Instagram Logo" class="w-6 h-6" />
-            <span>Instagram</span>
-          </a>
-          <a
-            href="https://wa.me/6282218656400"
-            target="_blank"
-            class="bg-black text-white font-semibold rounded-lg px-5 py-3 flex items-center gap-3 transition-transform transform hover:scale-105"
-          >
-            <img src="/assets/WA.png" alt="WhatsApp Logo" class="w-6 h-6" />
-            <span>WhatsApp</span>
-          </a>
-        </div>
-      </div>
-    </section>
+
+        <SkillCarousel
+          title="Software Tools"
+          items={softwareTools}
+          swiperClass="software-tools-swiper"
+        />
+
+        <SkillCarousel
+          title="Technology & Frameworks"
+          items={technologies}
+          swiperClass="technology-swiper"
+        />
+      </section>
+    </div>
   </main>
 </Layout>

@@ -1,0 +1,42 @@
+---
+export interface Props {
+  iconClass: string;
+  title: string;
+  levelText: string; 
+  levelNumber: number;
+}
+const { iconClass, title, levelText, levelNumber } = Astro.props;
+---
+
+<div
+  class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4 requirement-card"
+  data-level={levelNumber}
+>
+  <div
+    class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col p-8 h-full"
+  >
+    <i class={`${iconClass} text-5xl text-white self-center`}></i>
+    <h3 class="text-white text-2xl font-regular mt-4 text-center">{title}</h3>
+    <h4
+      class="py-1 px-3 text-center text-sm font-semibold text-[#ff4309] bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] mt-2 self-center"
+    >
+      {levelText}
+    </h4>
+
+    <div class="w-full mt-auto pt-6">
+      <div class="flex justify-between items-baseline">
+        <h4 class="text-white text-sm text-base">Proficiency Level</h4>
+        <p class="proficiency-text text-sm font-bold text-[#ff4309]"></p>
+      </div>
+      <div
+        class="proficiency-line-container w-full h-2 bg-gray-600 rounded-full mt-1.5"
+      >
+        <div
+          class="proficiency-line-fill h-full bg-[#ff4309] rounded-full transition-all duration-300 ease-out"
+          style="width: 0%;"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

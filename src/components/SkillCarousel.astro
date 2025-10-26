@@ -1,0 +1,69 @@
+---
+export interface SkillItem {
+  imgSrc: string;
+  altText: string;
+  name: string;
+  level: number;
+  levelText: string;
+}
+
+export interface Props {
+  title: string;
+  items: SkillItem[];
+  swiperClass: string;
+}
+
+const { title, items, swiperClass } = Astro.props;
+---
+
+<div class="mt-4">
+  <h3 class="text-white font-bold text-2xl leading-tight" data-aos="fade-right">
+    {title}
+  </h3>
+
+  <div
+    class={`swiper ${swiperClass} mt-2 overflow-hidden`}
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
+    <div class="swiper-wrapper py-8">
+      {
+        items.map((item) => (
+          <div class="swiper-slide" data-level={item.level}>
+            <div class="items-center gap-4 transition-all duration-300 transform hover:-translate-y-4 group h-full flex flex-col">
+              <div class="bg-[#141414] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center h-36 relative w-full">
+                <div class="transition-all duration-300 group-hover:opacity-0 group-hover:scale-75">
+                  <img
+                    src={item.imgSrc}
+                    alt={item.altText}
+                    class="max-h-20"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="absolute inset-0 flex flex-col items-start justify-center p-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <h4 class="py-1 px-3 text-left text-sm font-semibold text-[#ff4309] bg-[#141414] rounded-xl shadow-md border-2 border-[#ff4309] mb-2">
+                    {item.levelText}
+                  </h4>
+                  <h4 class="text-white text-sm text-base">
+                    Proficiency Level
+                  </h4>
+                  <p class="proficiency-text text-sm font-bold text-[#ff4309]" />
+                  <div class="proficiency-line-container w-full h-2 bg-gray-600 rounded-full mt-2">
+                    <div
+                      class="proficiency-line-fill h-full bg-[#ff4309] rounded-full transition-all duration-300 ease-out"
+                      style="width: 0%;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <h3 class="mt-4 text-center text-xl font-regular text-white">
+                {item.name}
+              </h3>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="text-sm text-center text-gray-500 mt-2">Drag to navigate. Click for details</p>
+  </div>
+</div>

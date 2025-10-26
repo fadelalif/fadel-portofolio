@@ -3,7 +3,6 @@ import "../styles/globals.css";
 export interface Props {
   title: string;
 }
-
 const { title } = Astro.props;
 ---
 
@@ -24,75 +23,297 @@ const { title } = Astro.props;
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
     <link rel="icon" href="/assets/FDL.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
-    ></script>
     <style>
       body {
         font-family: "Poppins", sans-serif;
-        background-color: #232323;
         color: white;
+        background-color: #232323;
+        background-image: radial-gradient(
+          ellipse at top,
+          #222222 0%,
+          #181818 70%
+        );
+        background-attachment: fixed;
+        position: relative;
+        z-index: 1;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+
+        z-index: -1;
+        pointer-events: none;
       }
     </style>
   </head>
   <body class="overflow-x-hidden">
     <slot />
-    <footer class="text-center py-6">
-      <p class="text-white">
-        &copy; 2025 Fadel Alif Sadena. All rights reserved.
-      </p>
+    <footer class="text-white">
+      <div class="bg-[#141414]">
+        <div class="container mx-auto px-4 sm:px-8 md:px-20 py-16">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+              <img src="/assets/FDL.png" class="h-12" alt="Logo" />
+              <p class="mt-4 text-gray-300">
+                Passionate in software development related. I strive to learn
+                many things, constantly looking for experiences, and build many
+                relation with other.
+              </p>
+              <div class="mt-6 flex space-x-4">
+                <a
+                  href="https://github.com/fadelalif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                >
+                  <i class="fa-brands fa-github text-2xl"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/fadelalif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                >
+                  <i class="fa-brands fa-linkedin text-2xl"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/fadelalifs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                >
+                  <i class="fa-brands fa-instagram text-2xl"></i>
+                </a>
+                <a
+                  href="https://dribbble.com/fadelalifs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                >
+                  <i class="fa-brands fa-dribbble text-2xl"></i>
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-4">Contact Me</h3>
+              <p class="text-gray-300">
+                Lets we collaborate on a project, or feel free to text me just
+                to get to know about me.
+              </p>
+              <a
+                href="mailto:fadelkarut@gmail.com"
+                class="inline-block mt-4 font-bold text-[#ff4309] hover:opacity-80 transition-opacity"
+              >
+                Send me an email
+              </a>
+              <div class="flex items-center mt-4">
+                <span
+                  class="h-2.5 w-2.5 bg-green-500 rounded-full inline-block mr-2 flex-shrink-0"
+                ></span>
+                <span class="text-gray-300 text-sm">Available 24/7</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="/"
+                    class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/experience"
+                    class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                    >Experiences</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/projects"
+                    class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                    >Projects</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                    >Contact</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/blog"
+                    class="text-gray-300 hover:text-[#ff4309] transition-colors"
+                    >Personal Blog</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-black py-6">
+        <p class="text-center text-gray-400 text-sm">
+          &copy; 2025 Fadel Alif Sadena. All rights reserved.
+        </p>
+      </div>
     </footer>
     <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"
     ></script>
-
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+    ></script>
     <script is:inline>
       document.addEventListener("DOMContentLoaded", function () {
-        AOS.init({
-          once: true,
-          duration: 800,
-        });
+        // 1. Inisialisasi AOS
+        try {
+          AOS.init({
+            once: true,
+            duration: 800,
+          });
+        } catch (e) {
+          console.warn("AOS library not found or failed to initialize.");
+        }
 
-        var typed = new Typed("#hero-title", {
-          strings: ['Hi, Im <span class="text-[#ff4309]">Fadel Alif</span>!'],
-          typeSpeed: 250,
-          showCursor: false,
-        });
-        var typedSubtitle = new Typed("#hero-subtitle", {
-          strings: ["A Software Engineer", "A UI/UX Designer"],
-          typeSpeed: 70, // Kecepatan mengetik
-          backSpeed: 40, // Kecepatan menghapus
-          backDelay: 2000, // Waktu jeda sebelum mulai menghapus
-          loop: true, // Agar animasi berulang terus
-        });
-      });
-    </script>
-    <script>
-      const scrollContainer = document.getElementById("tools-container");
-      const scrollLeftButton = document.getElementById("scroll-left");
-      const scrollRightButton = document.getElementById("scroll-right");
+        // 2. Inisialisasi Typed.js (jika ada di halaman)
+        try {
+          if (document.getElementById("hero-title")) {
+            new Typed("#hero-title", {
+              strings: [
+                'Hi, Im <span class="text-[#ff4309]">Fadel Alif</span>!',
+              ],
+              typeSpeed: 250,
+              showCursor: false,
+            });
+          }
+          if (document.getElementById("hero-subtitle")) {
+            new Typed("#hero-subtitle", {
+              strings: ["A Software Engineer", "A UI/UX Designer"],
+              typeSpeed: 70,
+              backSpeed: 40,
+              backDelay: 2000,
+              loop: true,
+            });
+          }
+        } catch (e) {
+          console.warn("Typed.js library not found or failed to initialize.");
+        }
 
-      // Jarak scroll setiap kali tombol di klik (dalam pixel)
-      const scrollAmount = 300;
+        // 3. Fungsi Inisialisasi Swiper (Reusable)
+        function initializeSwiper(selector) {
+          try {
+            // Hanya inisialisasi jika elemennya ada
+            if (document.querySelector(selector)) {
+              const swiper = new Swiper(selector, {
+                loop: true,
+                spaceBetween: 30,
+                autoplay: {
+                  delay: 1500, // Kecepatan autoplay disesuaikan
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                },
+                breakpoints: {
+                  0: { slidesPerView: 2, spaceBetween: 20 },
+                  640: { slidesPerView: 3, spaceBetween: 30 },
+                  768: { slidesPerView: 4, spaceBetween: 30 },
+                  1024: { slidesPerView: 5, spaceBetween: 30 },
+                },
+                // Tambahkan kembali Paginasi jika diperlukan, pastikan elemennya unik
+                // pagination: {
+                //   el: `${selector} .swiper-pagination`,
+                //   clickable: true,
+                // },
+              });
+            }
+          } catch (e) {
+            console.warn(
+              `Swiper: Failed to initialize ${selector}. Error: ${e}`
+            );
+          }
+        }
 
-      scrollLeftButton.addEventListener("click", () => {
-        scrollContainer.scrollBy({
-          left: -scrollAmount,
-          behavior: "smooth",
-        });
-      });
+        // Panggil inisialisasi untuk SEMUA carousel Anda
+        initializeSwiper(".software-tools-swiper");
+        initializeSwiper(".technology-swiper"); // Pastikan ini juga dipanggil
 
-      scrollRightButton.addEventListener("click", () => {
-        scrollContainer.scrollBy({
-          left: scrollAmount,
-          behavior: "smooth",
-        });
-      });
+        // 4. Fungsi Setup Proficiency Display (Reusable)
+        function setupProficiencyDisplay(selector) {
+          document.querySelectorAll(selector).forEach((element) => {
+            // Dapatkan level dari dataset, pastikan defaultnya 0
+            // Perbaikan: Hapus 'as HTMLElement'
+            const level = parseInt(element.dataset.level || "0") || 0;
+            if (level === 0) return;
+
+            // Cari elemen teks dan isi
+            const textElement = element.querySelector(".proficiency-text");
+            if (textElement) {
+              textElement.textContent = `${level} / 5`;
+            }
+
+            // Cari elemen line fill dan atur lebarnya
+            const lineFill = element.querySelector(".proficiency-line-fill");
+            // Periksa apakah lineFill adalah HTMLElement sebelum mengakses style
+            // Perbaikan: Gunakan pengecekan standar JS, bukan 'instanceof HTMLElement' karena bisa error jika element null
+            if (lineFill && lineFill.style) {
+              const percentage = (level / 5) * 100;
+              lineFill.style.width = `${percentage}%`;
+            }
+          });
+        }
+
+        // Panggil setup untuk SEMUA elemen yang relevan
+        setupProficiencyDisplay(".requirement-card");
+        setupProficiencyDisplay(".software-tools-swiper .swiper-slide");
+        setupProficiencyDisplay(".technology-swiper .swiper-slide"); // Pastikan ini juga dipanggil
+
+        // 5. Setup Menu Mobile Toggle
+        const menuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (menuButton && mobileMenu) {
+          menuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        }
+
+        // 6. Setup Efek Scroll Navbar (dengan optimasi isScrolled)
+        const isHome = window.location.pathname === "/";
+        const header = document.getElementById("main-header");
+        if (!isHome && header) {
+          let isScrolled = false; // Flag untuk optimasi
+          const handleScroll = () => {
+            // Tambah background HANYA jika scroll > 10 DAN belum di-set
+            if (window.scrollY > 10 && !isScrolled) {
+              header.classList.add("bg-black/80", "backdrop-blur-sm");
+              isScrolled = true;
+            }
+            // Hapus background HANYA jika scroll <= 10 DAN background sedang di-set
+            else if (window.scrollY <= 10 && isScrolled) {
+              header.classList.remove("bg-black/80", "backdrop-blur-sm");
+              isScrolled = false;
+            }
+          };
+          // Gunakan passive: true untuk performa scroll yang lebih baik
+          window.addEventListener("scroll", handleScroll, { passive: true });
+          handleScroll(); // Panggil sekali saat load untuk set state awal
+        }
+      }); // Akhir dari DOMContentLoaded listener
     </script>
   </body>
 </html>

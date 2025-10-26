@@ -1,0 +1,145 @@
+---
+const { pathname } = Astro.url;
+const isHome = pathname === "/";
+const baseClass = "text-lg font-bold hover:text-[#ff4309] transition-colors";
+const activeClass = "text-[#ff4309]";
+---
+
+<header
+  id="main-header"
+  class:list={[
+    "relative",
+    "w-full",
+    "transition-colors duration-300",
+    {
+      "h-screen bg-cover bg-center": isHome, 
+      "sticky top-0 z-50": !isHome, 
+    },
+  ]}
+  style={isHome ? "background-image: url('/assets/Hero FDL.png');" : undefined}
+>
+  {isHome && <div class="absolute inset-0 bg-black opacity-40" />}
+
+  <div
+    class:list={["relative", "z-10", "flex", "flex-col", { "h-full": isHome }]}
+  >
+    <nav
+      class="container mx-auto flex items-center justify-between px-4 py-2 sm:px-8 md:px-20"
+    >
+      <a href="/">
+        <img src="/assets/FDL.png" class="h-12" alt="Logo" />
+      </a>
+      <div class="hidden items-center space-x-6 md:flex text-white">
+        <a
+          href="/"
+          class:list={[baseClass, { [activeClass]: pathname === "/" }]}
+        >
+          Home
+        </a>
+        <a
+          href="/experience"
+          class:list={[
+            baseClass,
+            { [activeClass]: pathname === "/experience" },
+          ]}
+        >
+          Experiences
+        </a>
+        <a
+          href="/projects"
+          class:list={[baseClass, { [activeClass]: pathname === "/projects" }]}
+        >
+          Projects
+        </a>
+        <a
+          href="/blog"
+          class:list={[baseClass, { [activeClass]: pathname === "/blog" }]}
+        >
+          Personal Blog
+        </a>
+        <a
+          href="/contact"
+          class:list={[baseClass, { [activeClass]: pathname === "/contact" }]}
+        >
+          Contact
+        </a>
+      </div>
+
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-white focus:outline-none">
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden absolute top-20 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm"
+    >
+      <div class="flex flex-col items-center space-y-4 py-4">
+        <a
+          href="/"
+          class:list={[baseClass, { [activeClass]: pathname === "/" }]}
+        >
+          Home
+        </a>
+        <a
+          href="/experience"
+          class:list={[
+            baseClass,
+            { [activeClass]: pathname === "/experience" },
+          ]}
+        >
+          Experiences
+        </a>
+        <a
+          href="/projects"
+          class:list={[baseClass, { [activeClass]: pathname === "/projects" }]}
+        >
+          Projects
+        </a>
+        <a
+          href="/contact"
+          class:list={[baseClass, { [activeClass]: pathname === "/contact" }]}
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+    {
+      isHome && (
+        <div class="flex-grow container mx-auto px-4 sm:px-8 md:px-20 relative text-white">
+          <div class="absolute bottom-[60%]" data-aos="fade-right">
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-bold" />
+          </div>
+          <div
+            class="absolute bottom-[15%] right-0 md:right-20 text-right"
+            data-aos="fade-left"
+          >
+            <p class="text-2xl md:text-4xl font-bold">
+              <span id="hero-subtitle" />
+            </p>
+            <a
+              href="/assets/CV ATS_Fadel Alif Sadena Fresh Graduate.pdf"
+              download="CV Fadel Alif.pdf"
+              class="mt-4 inline-block rounded-md bg-gradient-to-r from-[#FF4E09] to-[#FF804E] px-8 py-3 font-semibold text-white shadow-lg transition-transform transform hover:scale-105 duration-300"
+            >
+              Download CV
+            </a>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</header>
